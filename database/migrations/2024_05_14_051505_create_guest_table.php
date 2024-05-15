@@ -6,18 +6,29 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateGuestTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
         Schema::create('guest', function (Blueprint $table) {
-            $table->increments('GuestID');
-            $table->string('GuestFullName', 100);
-            $table->string('GuestAddress', 200);
-            $table->string('GuestPhone', 15);
-            $table->string('GuestEmail', 50);
+            $table->increments('NIKID');
+            $table->string('Name', 50);
+            $table->string('Email', 50);
+            $table->string('Phone', 50);
+            $table->string('Address', 50);
+            $table->integer('CreditCardNumber');
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
         Schema::dropIfExists('guest');

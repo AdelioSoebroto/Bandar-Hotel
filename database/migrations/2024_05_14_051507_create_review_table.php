@@ -6,20 +6,32 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateReviewTable extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
-        Schema::create('review', function (Blueprint $table) {
+        Schema::create('Review', function (Blueprint $table) {
             $table->increments('ReviewID');
-            $table->integer('GuestID')->unsigned();
-            $table->text('Review');
-            $table->timestamps();
+            $table->integer('ReservationID')->unsigned();
+            $table->string('Rating', 50);
+            $table->string('Comment', 100);
+            $table->date('InputDate');
+            $table->string('TravelType', 50);
 
-            $table->foreign('GuestID')->references('GuestID')->on('guest')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreign('ReservationID')->references('ReservationID')->on('Reservation')->onDelete('cascade');
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
-        Schema::dropIfExists('review');
+        Schema::dropIfExists('Review');
     }
 }
